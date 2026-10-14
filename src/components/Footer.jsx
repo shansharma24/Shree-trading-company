@@ -58,7 +58,6 @@ export default function Footer({ onOpenQuoteModal }) {
               <li><a href="#home" onClick={(e) => scrollTo(e, 'home')} className="footer-link">Home Overview</a></li>
               <li><a href="#catalog" onClick={(e) => scrollTo(e, 'catalog')} className="footer-link">Equipment Catalog</a></li>
               <li><a href="#services" onClick={(e) => scrollTo(e, 'services')} className="footer-link">Technical Services</a></li>
-              <li><a href="#calculator" onClick={(e) => scrollTo(e, 'calculator')} className="footer-link">Cost Estimator</a></li>
               <li><a href="#about" onClick={(e) => scrollTo(e, 'about')} className="footer-link">About Workshop</a></li>
               <li><a href="#why-us" onClick={(e) => scrollTo(e, 'why-us')} className="footer-link">Why Choose Us</a></li>
               <li><a href="#contact" onClick={(e) => scrollTo(e, 'contact')} className="footer-link">Contact &amp; Map</a></li>

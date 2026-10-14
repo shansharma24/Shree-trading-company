@@ -10,7 +10,7 @@ export default function Navbar({ onOpenQuoteModal }) {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
 
-      const sections = ['home', 'catalog', 'calculator', 'services', 'about', 'why-us', 'faq', 'contact'];
+      const sections = ['home', 'catalog', 'services', 'about', 'why-us', 'faq', 'contact'];
       for (const section of sections) {
         const el = document.getElementById(section);
         if (el) {
@@ -76,15 +76,6 @@ export default function Navbar({ onOpenQuoteModal }) {
                 className={`nav-link ${activeSection === 'services' ? 'active' : ''}`}
               >
                 Services
-              </a>
-            </li>
-            <li>
-              <a
-                href="#calculator"
-                onClick={(e) => handleNavClick(e, 'calculator')}
-                className={`nav-link ${activeSection === 'calculator' ? 'active' : ''}`}
-              >
-                Cost Estimator
               </a>
             </li>
             <li>
@@ -162,14 +153,6 @@ export default function Navbar({ onOpenQuoteModal }) {
             className="mobile-nav-link"
           >
             <span>Repair & Refill Services</span>
-            <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>chevron_right</span>
-          </a>
-          <a
-            href="#calculator"
-            onClick={(e) => handleNavClick(e, 'calculator')}
-            className="mobile-nav-link"
-          >
-            <span>Cost & Refill Estimator</span>
             <span className="material-symbols-outlined" style={{ fontSize: '18px' }}>chevron_right</span>
           </a>
           <a

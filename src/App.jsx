@@ -4,7 +4,6 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import PillarsStrip from './components/PillarsStrip';
 import Catalog from './components/Catalog';
-import CostEstimator from './components/CostEstimator';
 import Services from './components/Services';
 import About from './components/About';
 import WhyUs from './components/WhyUs';
@@ -76,15 +75,6 @@ export default function App() {
     scrollToContact();
   };
 
-  const handleInquireEstimate = (estimate) => {
-    setFormPrefill({
-      category: estimate.service.includes('Refill') ? 'Toner Refilling' : 'Printer Repair',
-      model: `${estimate.device} (${estimate.quantity} units)`,
-      notes: `Online Calculator Estimate: ${estimate.service} for ${estimate.quantity} x ${estimate.device}. Estimated cost: ${estimate.estimatedTotal}. Turnaround requested: ${estimate.turnaround}.`
-    });
-    scrollToContact();
-  };
-
   return (
     <div className="app-container">
       {/* Top utility strip */}
@@ -105,9 +95,6 @@ export default function App() {
           onSelectProduct={handleSelectProduct}
           onOpenQuoteModal={openQuoteModal}
         />
-
-        {/* Interactive Cost & Refill Estimator */}
-        <CostEstimator onInquireEstimate={handleInquireEstimate} />
 
         {/* Specialized Repair & Maintenance Services */}
         <Services

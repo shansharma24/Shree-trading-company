@@ -49,13 +49,8 @@ export const PRODUCTS_CATALOG = [
     badgeColor: "primary",
     image: "/images/copier_hero.jpg",
     alt: "Photocopier Machines Commercial Equipment",
-    description: "High-efficiency commercial photocopying equipment for offices, institutions, and document centers requiring high-speed dual-sided throughput.",
-    specs: [
-      { label: "Throughput", value: "A4 & A3 Multi-Tray" },
-      { label: "Duty Cycle", value: "High-Volume Office (Up to 80K/mo)" },
-      { label: "Features", value: "Auto Duplex, Network Scanning, Touch Panel" },
-      { label: "Brands", value: "Canon / Ricoh / Sharp / Konica" }
-    ],
+    description: "High-speed A3/A4 commercial copiers with duplex printing and scanning for high-volume offices.",
+    tags: ["A3 & A4 Duplex", "High-Volume", "Multi-Brand"],
     inquiryTopic: "Photocopier Sales & Lease"
   },
   {
@@ -66,13 +61,8 @@ export const PRODUCTS_CATALOG = [
     badgeColor: "secondary",
     image: "/images/printer.jpg",
     alt: "Commercial Laser Printers",
-    description: "Heavy-duty laser and office printing equipment for varied corporate requirements with networked Ethernet, wireless print, and duplex capabilities.",
-    specs: [
-      { label: "Technology", value: "Monochrome & Laser Color" },
-      { label: "Speed", value: "Up to 38-45 PPM" },
-      { label: "Connectivity", value: "High-speed USB / Gigabit LAN / Wi-Fi" },
-      { label: "Usage", value: "Legal Firms, Accounts, Admin Desks" }
-    ],
+    description: "Reliable monochrome & color laser printers with network duplexing for corporate desks.",
+    tags: ["Up to 45 PPM", "LAN & Wi-Fi", "Heavy Duty"],
     inquiryTopic: "Printer Sales"
   },
   {
@@ -83,13 +73,8 @@ export const PRODUCTS_CATALOG = [
     badgeColor: "amber",
     image: "/images/toner.jpg",
     alt: "Laser Printer Toner Cartridges",
-    description: "Laser printer toner cartridges and reliable compatible supplies ensuring deep black reproduction, razor-sharp lines, and certified high page yields.",
-    specs: [
-      { label: "Compatibility", value: "HP, Canon, Brother, Ricoh, Samsung" },
-      { label: "Standard Yield", value: "1,500 – 6,500 Pages" },
-      { label: "Quality Check", value: "100% Leak & Drum Checked" },
-      { label: "Availability", value: "Ready in Stock / Bulk Volume" }
-    ],
+    description: "High-density toner cartridges ensuring sharp dark prints with certified page yields.",
+    tags: ["High Page Yield", "Leak Tested", "OEM Quality"],
     inquiryTopic: "Cartridge Supplies"
   },
   {
@@ -100,13 +85,8 @@ export const PRODUCTS_CATALOG = [
     badgeColor: "primary",
     image: "/images/cartridges_supplies.jpg",
     alt: "Photocopier High Yield Cartridges",
-    description: "High-yield cartridges and micro-ground toner bottles engineered specifically for large-format photocopiers and multi-user administrative reproduction.",
-    specs: [
-      { label: "Yield", value: "10,000 to 45,000+ Pages" },
-      { label: "Form Factor", value: "High-Density Bottle / Cartridge" },
-      { label: "Compatibility", value: "Canon iR Series, Ricoh MP, Sharp AR" },
-      { label: "Warranty", value: "Replacement Guarantee Against Defects" }
-    ],
+    description: "High-yield toner bottles and cartridges engineered for commercial photocopiers.",
+    tags: ["10K-45K+ Pages", "Canon / Ricoh", "Bulk Stock"],
     inquiryTopic: "Photocopier Cartridge Supplies"
   },
   {
@@ -117,13 +97,8 @@ export const PRODUCTS_CATALOG = [
     badgeColor: "amber",
     image: "/images/workshop_tech.jpg",
     alt: "Precision Toner Refilling Station",
-    description: "Professional refill service using calibrated micro-carbon toner powders, complete vacuum cleaning of waste toner chambers, and roller checks.",
-    specs: [
-      { label: "Turnaround", value: "Express 30-45 Mins / Same Day" },
-      { label: "Service Mode", value: "Daryaganj Walk-in / Drop-off" },
-      { label: "Yield Guarantee", value: "Identical to Original OEM Yield" },
-      { label: "Eco Impact", value: "Up to 70% Cost Savings vs New" }
-    ],
+    description: "Calibrated micro-powder refilling with complete residue chamber vacuum cleaning.",
+    tags: ["30-45 Min Turnaround", "70% Cost Savings", "Tested"],
     inquiryTopic: "Toner Refilling"
   },
   {
@@ -134,13 +109,8 @@ export const PRODUCTS_CATALOG = [
     badgeColor: "secondary",
     image: "/images/technician.jpg",
     alt: "Printer and Photocopier Spare Parts",
-    description: "Comprehensive inventory of OPC drums, doctor blades, primary charge rollers (PCR), pickup rollers, fuser film sleeves, and gears.",
-    specs: [
-      { label: "Inventory", value: "Over 500+ Spares In Stock" },
-      { label: "Compatibility", value: "All Major Laser & Copier Engines" },
-      { label: "Testing", value: "Pre-tested in Workshop" },
-      { label: "Support", value: "Installation Assistance Available" }
-    ],
+    description: "Tested OPC drums, blades, PCR rollers, gears, and fuser assemblies in stock.",
+    tags: ["500+ Spares Ready", "Pre-Tested", "Fast Dispatch"],
     inquiryTopic: "Spare Parts Inquiry"
   }
 ];
@@ -150,12 +120,10 @@ export const SERVICES_LIST = [
     id: "refill",
     icon: "water_drop",
     title: "Precision Toner Refilling",
-    description: "Calibrated laser toner filling with zero-leak guarantee, high page-yield black density, vacuum chamber residue cleaning, and microchip resetting.",
+    description: "Calibrated laser toner refilling with chamber vacuum cleaning and microchip resets.",
     points: [
-      "Micro-refined carbon powder tailored by model",
-      "Thorough magnetic roller and blade cleaning",
-      "Waste hopper emptying and inspection",
-      "Immediate test print verification before dispatch"
+      "Zero-leak guarantee & deep black density",
+      "Express 30-45 mins turnaround in Daryaganj"
     ],
     badge: "Most Popular",
     inquiry: "Toner Refilling"
@@ -164,12 +132,10 @@ export const SERVICES_LIST = [
     id: "printer-repair",
     icon: "hardware",
     title: "Printer Repair & Diagnosis",
-    description: "Troubleshooting and component-level repair for recurring paper feed jams, logic board issues, fuser errors (50.x), and mechanical grinding.",
+    description: "Prompt troubleshooting and component repair for paper jams, logic boards, and fusers.",
     points: [
-      "Pickup roller and separation pad replacement",
-      "Laser scanner assembly cleaning and realignment",
-      "Fuser film and heating element repairs",
-      "Driver and firmware communication setup"
+      "Pickup roller & separation pad replacements",
+      "Laser scanner unit optical cleaning"
     ],
     badge: "Fast Turnaround",
     inquiry: "Printer Repair"
@@ -178,12 +144,10 @@ export const SERVICES_LIST = [
     id: "copier-repair",
     icon: "settings_suggest",
     title: "Photocopier Repair & AMC",
-    description: "Dedicated maintenance for multi-function commercial photocopiers. Scanner glass realignment, transfer belt checks, and motherboard diagnosis.",
+    description: "Dedicated diagnostics, ADF alignment, and annual maintenance contracts for copier fleets.",
     points: [
-      "Error code clearance and troubleshooting (E000, etc.)",
-      "Developer unit maintenance and bead calibration",
-      "High-speed feeder (ADF) alignment & roller servicing",
-      "Routine annual maintenance contract (AMC) support"
+      "Error code clearance & developer calibration",
+      "Flexible annual AMC maintenance plans"
     ],
     badge: "Enterprise Grade",
     inquiry: "Photocopier Repair"
@@ -192,12 +156,10 @@ export const SERVICES_LIST = [
     id: "preventative-service",
     icon: "cleaning_services",
     title: "Preventative Servicing & Overhaul",
-    description: "Deep internal dust extraction, paper path decalcification, lubrication, and sensor calibration to prolong machine lifetime.",
+    description: "Internal dust extraction, gear lubrication, and paper path decalcification to prevent downtime.",
     points: [
-      "Comprehensive paper path cleaning",
-      "Optical sensor and glass decontamination",
-      "High-grade silicone gear lubrication",
-      "Drastic reduction in random jam occurrences"
+      "Comprehensive paper path & sensor cleaning",
+      "High-grade silicone gear lubrication"
     ],
     badge: "Proactive Care",
     inquiry: "Preventative Servicing"
@@ -206,12 +168,10 @@ export const SERVICES_LIST = [
     id: "bulk-supply",
     icon: "inventory_2",
     title: "Cartridge & Bulk Toner Supply",
-    description: "Bulk and institutional supplies of cartridges, toner bottles, developer units, and spares with volume discounts for offices and print centers.",
+    description: "Wholesale supplies of toner bottles, cartridges, and spare parts with GST billing.",
     points: [
-      "Wholesale pricing for schools, lawyers & offices",
-      "Consistent batch quality with deep black density",
-      "GST billing and doorstep dispatch in Delhi NCR",
-      "Guaranteed replacement against leaking or streaks"
+      "Special institutional rates for bulk orders",
+      "Doorstep delivery across Delhi NCR"
     ],
     badge: "Wholesale Ready",
     inquiry: "Cartridge Supplies"
@@ -220,12 +180,10 @@ export const SERVICES_LIST = [
     id: "machine-sales-lease",
     icon: "storefront",
     title: "Machine Sales & Corporate Lease",
-    description: "Commercial photocopiers and multi-function printers vetted for duty cycle resilience, low operating per-page cost, and accessible spares.",
+    description: "Brand-new and refurbished heavy-duty copiers and printers with flexible lease plans.",
     points: [
       "Flexible monthly rental / leasing schemes",
-      "Refurbished & brand-new machine options",
-      "Complete installation & staff training included",
-      "Post-purchase servicing priority support"
+      "Complete installation & priority technical support"
     ],
     badge: "Flexible Terms",
     inquiry: "Machine Sales"

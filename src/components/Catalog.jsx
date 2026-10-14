@@ -22,14 +22,6 @@ export default function Catalog({ onSelectProduct, onOpenQuoteModal }) {
     return 'badge-amber';
   };
 
-  const handleInquiry = (product) => {
-    if (onSelectProduct) {
-      onSelectProduct(product);
-    } else if (onOpenQuoteModal) {
-      onOpenQuoteModal(product.inquiryTopic, product.name);
-    }
-  };
-
   return (
     <section className="section-wrapper catalog-section" id="catalog">
       <div className="section-container">
@@ -76,14 +68,14 @@ export default function Catalog({ onSelectProduct, onOpenQuoteModal }) {
         </div>
 
         {/* Products Grid */}
-        <div className="catalog-grid">
+        <div className="catalog-grid catalog-grid-minimal">
           {filteredProducts.map((product) => (
-            <div key={product.id} className="product-card">
-              <div className="product-media">
+            <div key={product.id} className="product-card product-card-minimal">
+              <div className="product-media product-media-minimal">
                 <img
                   src={product.image}
                   alt={product.alt}
-                  className="product-img"
+                  className="product-img product-img-minimal"
                   loading="lazy"
                 />
                 <span className={`product-badge ${getBadgeClass(product.badgeColor)}`}>
@@ -91,55 +83,23 @@ export default function Catalog({ onSelectProduct, onOpenQuoteModal }) {
                 </span>
               </div>
 
-              <div className="product-body">
-                <h3 className="product-title">{product.name}</h3>
-                <p className="product-desc">{product.description}</p>
+              <div className="product-body product-body-minimal">
+                <h3 className="product-title product-title-minimal">{product.name}</h3>
+                <p className="product-desc product-desc-minimal">{product.description}</p>
 
-                {/* Specs Box */}
-                <div className="product-specs-box">
-                  {product.specs.map((spec, sIdx) => (
-                    <div key={sIdx} className="spec-row">
-                      <span className="spec-label">{spec.label}:</span>
-                      <span className="spec-value">{spec.value}</span>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Action button */}
-                <button
-                  type="button"
-                  onClick={() => handleInquiry(product)}
-                  className="btn-card-inquire"
-                >
-                  <span>Send Inquiry</span>
-                  <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>arrow_forward</span>
-                </button>
+                {/* Minimal Tags */}
+                {product.tags && (
+                  <div className="product-tags-minimal">
+                    {product.tags.map((tag, tIdx) => (
+                      <span key={tIdx} className="product-tag-chip">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
               </div>
             </div>
           ))}
-
-          {/* Quick RFQ Tile */}
-          <div className="rfq-banner-card">
-            <div>
-              <div className="rfq-banner-icon">
-                <span className="material-symbols-outlined" style={{ fontSize: '28px' }}>request_quote</span>
-              </div>
-              <h3 className="rfq-banner-title">Need a Specific Part or Model?</h3>
-              <p className="rfq-banner-desc">
-                We stock an extensive variety of drums, doctor blades, PCR rollers, gears, and toner grades at our Daryaganj inventory.
-              </p>
-            </div>
-
-            <button
-              type="button"
-              onClick={() => onOpenQuoteModal('Specific Part or Model RFQ')}
-              className="btn-primary-lg"
-              style={{ width: '100%', justifyContent: 'center' }}
-            >
-              <span>Contact Daryaganj Desk</span>
-              <span className="material-symbols-outlined" style={{ fontSize: '16px' }}>arrow_forward</span>
-            </button>
-          </div>
         </div>
       </div>
     </section>
