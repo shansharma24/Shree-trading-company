@@ -167,7 +167,7 @@ export default function ContactForm({ prefillCategory, prefillModel, prefillNote
                     id="phoneNumber"
                     name="phoneNumber"
                     className="form-input"
-                    placeholder="e.g. +91 98111 XXXXX"
+                    placeholder="e.g. +91 98995 XXXXX"
                     required
                     value={formData.phoneNumber}
                     onChange={handleChange}

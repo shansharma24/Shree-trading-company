@@ -9,7 +9,7 @@ A modern, high-converting React application built for **Shree Trading Company** 
 1. **Top Utilities & Announcement Bar**:
    - Location: *4658/21, Ansari Road, Daryaganj, near Fire Station, Delhi - 110002*
    - Working hours: *Mon - Sat: 10:00 AM – 7:30 PM (Sunday Closed)*
-   - One-click phone hotline (`tel:+919811123456`) and direct WhatsApp link.
+   - One-click phone hotline (`tel:+919899547205`) and direct WhatsApp link.
 
 2. **Hero Showcase**:
    - Primary value proposition: *Sales • Supplies • Repair • Service*

@@ -80,7 +80,7 @@ export default function QuoteModal({ isOpen, onClose, topic, itemName }) {
                 <input
                   type="tel"
                   required
-                  placeholder="e.g. +91 98111 XXXXX"
+                  placeholder="e.g. +91 98995 XXXXX"
                   className="form-input"
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
