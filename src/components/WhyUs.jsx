@@ -1,5 +1,6 @@
 import React from 'react';
 import { WHY_CHOOSE_US } from '../data/companyData';
+import MobileSlider from './MobileSlider';
 
 export default function WhyUs() {
   return (
@@ -21,7 +22,7 @@ export default function WhyUs() {
             </p>
           </div>
 
-          <div className="why-grid-compact">
+          <MobileSlider desktopGridClass="why-grid-compact">
             {WHY_CHOOSE_US.map((item, index) => (
               <div key={index} className="why-compact-card">
                 <div className="why-compact-badge">{item.number}</div>
@@ -29,7 +30,7 @@ export default function WhyUs() {
                 <p className="why-compact-desc">{item.description}</p>
               </div>
             ))}
-          </div>
+          </MobileSlider>
         </div>
       </div>
     </section>

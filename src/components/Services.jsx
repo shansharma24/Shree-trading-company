@@ -1,5 +1,6 @@
 import React from 'react';
 import { SERVICES_LIST, COMPANY_INFO } from '../data/companyData';
+import MobileSlider from './MobileSlider';
 
 export default function Services({ onSelectService, onOpenQuoteModal }) {
   const handleServiceInquiry = (service) => {
@@ -27,8 +28,8 @@ export default function Services({ onSelectService, onOpenQuoteModal }) {
           </p>
         </div>
 
-        {/* Minimal 6 Services Grid */}
-        <div className="services-grid services-grid-minimal">
+        {/* Minimal 6 Services Grid / Mobile Slider */}
+        <MobileSlider desktopGridClass="services-grid services-grid-minimal">
           {SERVICES_LIST.map((service) => (
             <div key={service.id} className="service-card service-card-minimal">
               <div className="service-card-header">
@@ -63,7 +64,7 @@ export default function Services({ onSelectService, onOpenQuoteModal }) {
               </button>
             </div>
           ))}
-        </div>
+        </MobileSlider>
 
         {/* Minimal Assistance Banner */}
         <div className="assistance-banner assistance-banner-minimal">

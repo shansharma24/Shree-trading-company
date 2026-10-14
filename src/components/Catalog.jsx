@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { PRODUCTS_CATALOG } from '../data/companyData';
+import MobileSlider from './MobileSlider';
 
 export default function Catalog({ onSelectProduct, onOpenQuoteModal }) {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -67,8 +68,8 @@ export default function Catalog({ onSelectProduct, onOpenQuoteModal }) {
           ))}
         </div>
 
-        {/* Products Grid */}
-        <div className="catalog-grid catalog-grid-minimal">
+        {/* Products Grid / Mobile Slider */}
+        <MobileSlider desktopGridClass="catalog-grid catalog-grid-minimal">
           {filteredProducts.map((product) => (
             <div key={product.id} className="product-card product-card-minimal">
               <div className="product-media product-media-minimal">
@@ -100,7 +101,7 @@ export default function Catalog({ onSelectProduct, onOpenQuoteModal }) {
               </div>
             </div>
           ))}
-        </div>
+        </MobileSlider>
       </div>
     </section>
   );
