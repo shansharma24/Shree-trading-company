@@ -1,15 +1,16 @@
 import React from 'react';
 import { QUICK_METRICS } from '../data/companyData';
+import MobileSlider from './MobileSlider';
 
 export default function PillarsStrip() {
   return (
     <div className="pillars-strip">
       <div className="section-container">
-        <div className="pillars-grid">
+        <MobileSlider desktopGridClass="pillars-grid" hideControls={true}>
           {QUICK_METRICS.map((metric, idx) => (
             <div key={idx} className="pillar-item">
               <div className="pillar-icon-box">
-                <span className="material-symbols-outlined" style={{ fontSize: '24px' }}>
+                <span className="material-symbols-outlined" style={{ fontSize: '22px' }}>
                   {metric.icon}
                 </span>
               </div>
@@ -19,7 +20,7 @@ export default function PillarsStrip() {
               </div>
             </div>
           ))}
-        </div>
+        </MobileSlider>
       </div>
     </div>
   );

@@ -1,10 +1,22 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
 
-export default function MobileSlider({ children, className = '', desktopGridClass = '' }) {
+export default function MobileSlider({
+  children,
+  className = '',
+  desktopGridClass = '',
+  autoMove = true,
+  interval = 2000,
+  hideControls = false
+}) {
+  const containerRef = useRef(null);
   const scrollRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const pauseTimeoutRef = useRef(null);
   const totalSlides = React.Children.count(children);
 
+  // Track scroll position to update active index indicator
   const handleScroll = () => {
     if (!scrollRef.current) return;
     const track = scrollRef.current;
@@ -24,29 +36,99 @@ export default function MobileSlider({ children, className = '', desktopGridClas
     setActiveIndex(closestIdx);
   };
 
-  const scrollToSlide = (index) => {
+  const scrollToSlide = useCallback((index) => {
     if (!scrollRef.current) return;
-    const items = scrollRef.current.children;
-    if (items && items[index]) {
-      items[index].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-      setActiveIndex(index);
+    const track = scrollRef.current;
+    if (index === 0) {
+      track.scrollTo({ left: 0, behavior: 'smooth' });
+    } else {
+      const items = track.children;
+      if (items && items[index]) {
+        items[index].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      }
     }
+    setActiveIndex(index);
+  }, []);
+
+  const pauseAutoPlayBriefly = () => {
+    setIsPaused(true);
+    if (pauseTimeoutRef.current) clearTimeout(pauseTimeoutRef.current);
+    pauseTimeoutRef.current = setTimeout(() => {
+      setIsPaused(false);
+    }, 3000);
   };
 
   const nextSlide = () => {
-    if (activeIndex < totalSlides - 1) {
-      scrollToSlide(activeIndex + 1);
-    }
+    pauseAutoPlayBriefly();
+    const nextIdx = (activeIndex + 1) % totalSlides;
+    scrollToSlide(nextIdx);
   };
 
   const prevSlide = () => {
-    if (activeIndex > 0) {
-      scrollToSlide(activeIndex - 1);
-    }
+    pauseAutoPlayBriefly();
+    const prevIdx = activeIndex === 0 ? totalSlides - 1 : activeIndex - 1;
+    scrollToSlide(prevIdx);
   };
 
+  const handleDotClick = (index) => {
+    pauseAutoPlayBriefly();
+    scrollToSlide(index);
+  };
+
+  // Visibility check with IntersectionObserver
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el || typeof IntersectionObserver === 'undefined') return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.15 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  // Auto-move with 2 second interval
+  useEffect(() => {
+    if (!autoMove || totalSlides <= 1 || isPaused || !isVisible) return;
+
+    const timer = setInterval(() => {
+      setActiveIndex((prev) => {
+        const next = (prev + 1) % totalSlides;
+        const track = scrollRef.current;
+        if (track) {
+          if (next === 0) {
+            track.scrollTo({ left: 0, behavior: 'smooth' });
+          } else if (track.children && track.children[next]) {
+            track.children[next].scrollIntoView({
+              behavior: 'smooth',
+              inline: 'center',
+              block: 'nearest'
+            });
+          }
+        }
+        return next;
+      });
+    }, interval);
+
+    return () => clearInterval(timer);
+  }, [autoMove, totalSlides, isPaused, isVisible, interval]);
+
   return (
-    <div className={`mobile-slider-container ${className}`}>
+    <div
+      ref={containerRef}
+      className={`mobile-slider-container ${className}`}
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onTouchStart={() => setIsPaused(true)}
+      onTouchEnd={() => {
+        if (pauseTimeoutRef.current) clearTimeout(pauseTimeoutRef.current);
+        pauseTimeoutRef.current = setTimeout(() => setIsPaused(false), 2500);
+      }}
+    >
       {/* Desktop Grid Layout (Screen > 768px) */}
       <div className={`mobile-slider-desktop ${desktopGridClass}`}>
         {children}
@@ -67,12 +149,11 @@ export default function MobileSlider({ children, className = '', desktopGridClas
         </div>
 
         {/* Minimal Slide Pagination Controls */}
-        {totalSlides > 1 && (
+        {!hideControls && totalSlides > 1 && (
           <div className="mobile-slider-controls">
             <button
               type="button"
               onClick={prevSlide}
-              disabled={activeIndex === 0}
               className="slider-nav-btn"
               aria-label="Previous card"
             >
@@ -84,7 +165,7 @@ export default function MobileSlider({ children, className = '', desktopGridClas
                 <button
                   key={idx}
                   type="button"
-                  onClick={() => scrollToSlide(idx)}
+                  onClick={() => handleDotClick(idx)}
                   className={`slider-dot ${activeIndex === idx ? 'active' : ''}`}
                   aria-label={`Slide ${idx + 1}`}
                 />
@@ -94,7 +175,6 @@ export default function MobileSlider({ children, className = '', desktopGridClas
             <button
               type="button"
               onClick={nextSlide}
-              disabled={activeIndex === totalSlides - 1}
               className="slider-nav-btn"
               aria-label="Next card"
             >
