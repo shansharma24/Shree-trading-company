@@ -836,60 +836,128 @@ body {
   line-height: 1.35;
 }
 
-/* Service Pillars Quick Bar */
-.pillars-strip {
-  background: var(--color-primary-container);
+/* ==========================================================================
+   Service Pillars Continuous Infinite Marquee Animation
+   ========================================================================== */
+
+.pillars-strip-marquee {
+  background: linear-gradient(90deg, #001226 0%, #001f3f 50%, #001226 100%);
   color: #ffffff;
-  padding: 1.75rem 0;
+  padding: 0.95rem 0;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05), 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
-.pillars-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
+/* Subtle Gradient Fade Mask on Left and Right Edges */
+.marquee-wrapper {
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
 }
 
-@media (max-width: 900px) {
-  .pillars-grid {
-    grid-template-columns: repeat(2, 1fr);
+.marquee-track {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  width: max-content;
+  animation: marqueeGlide 26s linear infinite;
+  will-change: transform;
+}
+
+/* Smooth pause on hover and touch */
+.marquee-wrapper:hover .marquee-track,
+.marquee-wrapper:active .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes marqueeGlide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.333333%);
   }
 }
 
-@media (max-width: 500px) {
-  .pillars-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-.pillar-item {
+.marquee-pillar-card {
   display: flex;
   align-items: center;
   gap: 0.85rem;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-md);
+  padding: 0.65rem 1.25rem;
+  flex-shrink: 0;
+  cursor: default;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-.pillar-icon-box {
-  width: 44px;
-  height: 44px;
+.marquee-pillar-card:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+.marquee-pillar-icon-box {
+  width: 38px;
+  height: 38px;
   border-radius: var(--radius-sm);
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--color-primary-fixed);
+  background: linear-gradient(135deg, rgba(55, 85, 195, 0.4), rgba(30, 58, 138, 0.6));
+  color: #93c5fd;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
-.pillar-title {
-  font-size: 0.95rem;
+.marquee-pillar-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.marquee-pillar-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.marquee-pillar-title {
+  font-size: 0.92rem;
   font-weight: 700;
   color: #ffffff;
+  white-space: nowrap;
+  letter-spacing: 0.01em;
 }
 
-.pillar-sub {
-  font-size: 0.78rem;
+.marquee-pillar-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.12rem 0.45rem;
+  border-radius: var(--radius-full);
+  background: rgba(234, 88, 12, 0.2);
+  color: #fdba74;
+  border: 1px solid rgba(234, 88, 12, 0.4);
+  white-space: nowrap;
+}
+
+.marquee-pillar-sub {
+  font-size: 0.76rem;
   color: var(--color-primary-fixed-dim);
+  white-space: nowrap;
 }
 
 /* Product Catalog Section */
@@ -2917,52 +2985,41 @@ body {
     border-radius: var(--radius-sm);
   }
 
-  /* Service Pillars Strip - Single sleek horizontal badge bar */
-  .pillars-strip {
-    padding: 0.85rem 0;
+  /* Service Pillars Strip - Infinite Moving Marquee Ribbon */
+  .pillars-strip-marquee {
+    padding: 0.75rem 0;
   }
 
-  .pillars-grid {
-    display: flex !important;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
+  .marquee-track {
+    gap: 0.85rem;
+    animation: marqueeGlide 22s linear infinite;
+  }
+
+  .marquee-pillar-card {
+    padding: 0.5rem 0.95rem;
     gap: 0.65rem;
-    scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
-    padding: 0.2rem 0;
   }
 
-  .pillars-grid::-webkit-scrollbar {
-    display: none;
-  }
-
-  .pillar-item {
-    flex: 0 0 auto;
-    scroll-snap-align: start;
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: var(--radius-sm);
-    padding: 0.5rem 0.85rem;
-    gap: 0.6rem;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-  }
-
-  .pillar-icon-box {
+  .marquee-pillar-icon-box {
     width: 32px;
     height: 32px;
   }
 
-  .pillar-icon-box .material-symbols-outlined {
+  .marquee-pillar-icon-box .material-symbols-outlined {
     font-size: 18px !important;
   }
 
-  .pillar-title {
+  .marquee-pillar-title {
     font-size: 0.82rem;
-    white-space: nowrap;
   }
 
-  .pillar-sub {
-    font-size: 0.7rem;
-    white-space: nowrap;
+  .marquee-pillar-badge {
+    font-size: 0.58rem;
+    padding: 0.1rem 0.38rem;
+  }
+
+  .marquee-pillar-sub {
+    font-size: 0.68rem;
   }
 
   /* Hero Section Mobile Refinement */
